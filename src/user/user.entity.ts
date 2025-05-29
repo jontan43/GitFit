@@ -2,15 +2,15 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column({ unique: true })
-  username: string;
+    @Column({ unique: true })
+    username: string;
 
-  @Column()
-  password: string; // TBA hashing of passwords
+    @Column()
+    password: string; // TBA hashing of passwords
 
-  @Column({ default: 'member' }) // roles: member | admin
-  role: string;
+    @Column({ default: 'member' }) // roles: member | admin
+    role: string;
 }

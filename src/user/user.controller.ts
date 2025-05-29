@@ -1,10 +1,18 @@
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
+import { Controller,Get,Post,Param,Body,UseGuards,Request } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+    @Get('profile')
+    @UseGuards(AuthGuard('jwt'))
+    getProfile(@Request() req) {
+    return req.user;
+    }
+
 
   @Get()
   findAll(): Promise<User[]> {
@@ -12,7 +20,7 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<User|null> {
+  findOne(@Param('id') id: number): Promise<User | null> {
     return this.userService.findOne(id);
   }
 

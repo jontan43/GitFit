@@ -5,11 +5,10 @@ import { User } from './user.entity';
 
 @Injectable()
 export class UserService {
-    constructor(
-        @InjectRepository(User)
-        private usersRepository: Repository<User>,
-    ){}
-
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+    ) {}
     findAll():Promise<User[]>{
         return this.usersRepository.find();
     }
@@ -30,5 +29,9 @@ export class UserService {
 
     async remove(id: number): Promise<void> {
         await this.usersRepository.delete(id);
+    }
+
+    findByUsername(username:string):Promise<User|null>{
+        return this.usersRepository.findOneBy({username});
     }
 }
