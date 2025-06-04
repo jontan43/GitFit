@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # GitFit
 
 GitFit is a backend application built with NestJS and PostgreSQL. It provides APIs to manage users, workouts, gym bookings, and more, powering a full-stack fitness app.
